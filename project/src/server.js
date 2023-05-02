@@ -1,4 +1,6 @@
 const Hapi = require("@hapi/hapi");
+const books = require("./books");
+const booksEntries = require("./books");
 
 const init = async () => {
   const server = Hapi.server({

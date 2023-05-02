@@ -1,9 +1,9 @@
+const { nanoid } = require("nanoid");
 const dateNow = new Date();
 const dateNowString = dateNow.toISOString().split("T")[0];
 const books = [];
 class booksEntries {
   constructor(
-    id,
     name,
     year = 0,
     author,
@@ -13,7 +13,7 @@ class booksEntries {
     readPage = 0,
     reading = false
   ) {
-    this.id = id;
+    this.id = nanoid(16);
     this.name = name;
     this.year = year;
     this.author = author;
