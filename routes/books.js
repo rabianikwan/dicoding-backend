@@ -1,3 +1,4 @@
+'use strict'
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -6,36 +7,30 @@ const rootDir = require('../utils/path')
 const libs =require('../utils/books')
 
 const book = libs.books;
+const Books = libs.Books;
 
-const harry = new libs.Books(
-    'KKJ', 1996,
-    'JK R', 'Wizard',
-    'Gramedia', 968,
-    200, true
-)
 router.post('/books', (req, res, next) => {
-    const Books = libs.Books;
-    if (!harry.name) {
+    const { name, year, author, summary, publisher, pageCount, readPage, reading } = req.payload;
+    if (!name) {
         res.status(400)
             .send({
             "status": "fail",
             "message": "Gagal menambahkan buku. Mohon isi nama buku"
         })
-    } else if (harry.readPage > harry.pageCount) {
+    } else if (readPage > pageCount) {
         res.status(400)
             .send({
                 "status": "fail",
                 "message": "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount"
             })
     } else {
-        book.push(harry)
+        book.push(new Books(name, year, author, summary, publisher, pageCount, readPage))
         res.status(200)
             .send({
                 "status": "success",
                 "message": "Berhasil menambahkan buku",
             })
     }
-
 })
 router.get('/books', (req, res, next) => {
     res.status(200)

@@ -1,3 +1,4 @@
+'use strict';
 const { nanoid } = require('nanoid');
 const date = new Date().toLocaleTimeString()
 const books = [];
