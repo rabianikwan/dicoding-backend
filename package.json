@@ -1,7 +1,7 @@
 {
-  "name": "dicodingbackend3-master",
+  "name": "submission",
   "version": "1.0.0",
-  "description": "Ini adalah basic yang harus dimplementasikan",
+  "description": "oleh Rabian Ikwan",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
