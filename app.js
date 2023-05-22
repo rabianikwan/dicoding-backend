@@ -1,18 +1,16 @@
-const path = require('path')
-const rootDir = require('./utils/path')
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-const libs = require('./utils/books')
-const booksRoute = require('./routes/books')
+const Hapi = require('@hapi/hapi');
+const routes = require('./src/routes')
 
-app.use(bodyParser.urlencoded({extended : false}))
-app.use(bodyParser.json());
+const init = async () => {
 
-app.use(booksRoute)
-app.use((req,res, next) => {
-    res.status(404)
-        .send('404')
-})
+    const server = Hapi.server({
+        port: 9000,
+        host: 'localhost'
+    });
 
-app.listen(3000)
+    server.route(routes);
+
+    await server.start();
+    console.log(`Server berjalan pada ${server.info.uri}`);
+};
+init()
